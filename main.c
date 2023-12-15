@@ -18,14 +18,22 @@ Vector2 scale = {0.5f/0.5f};
      Color tint = WHITE;
 
     Vector2 position = {(screenWidth - (submarine1.width* scale.x))/2, (screenHeight- (submarine1.height * scale.y))/2};
+const float moveSpeed = 5.0f;
 
     // The Game Loop
     while (!WindowShouldClose() /*WindowShouldClose returns true if esc is clicked and closes the window*/) {
 
-        BeginDrawing();
+       if(IsKeyDown(KEY_RIGHT)) position.x += moveSpeed;
+       if(IsKeyDown(KEY_LEFT)) position.x -= moveSpeed;
+       if(IsKeyDown(KEY_UP)) position.y -= moveSpeed;
+       if(IsKeyDown(KEY_DOWN)) position.y += moveSpeed;
+
+       if(IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) rotation -= 10.0f;
+               if(IsMouseButtonPressed(MOUSE_RIGHT_BUTTON)) rotation += 10.0f;
+
+       BeginDrawing();
 
         ClearBackground(RAYWHITE);
-
 
         DrawTextureEx(submarine1, position, rotation, 0.5f, tint);
 
@@ -36,6 +44,8 @@ Vector2 scale = {0.5f/0.5f};
         // teardown Canvas
         EndDrawing();
     }
+    UnloadTexture(submarine1);
+
     CloseWindow();
     return 0;
 }
