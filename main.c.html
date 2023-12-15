@@ -1,0 +1,55 @@
+<html>
+<head>
+<title>main.c</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #7a7e85;}
+.s1 { color: #bcbec4;}
+.s2 { color: #b3ae60;}
+.s3 { color: #6aab73;}
+.s4 { color: #cf8e6d;}
+.s5 { color: #bcbec4;}
+.s6 { color: #2aacb8;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+main.c</font>
+</center></td></tr></table>
+<pre><span class="s0">// Using guidance from Lecture 1, I added a basic Raylib structure.</span>
+<span class="s0">// (From https://chirag4862.hashnode.dev/getting-started-with-raylib-for-game-development-in-c#)</span>
+
+<span class="s2">#include </span><span class="s3">&quot;raylib.h&quot;</span>
+
+<span class="s4">int </span><span class="s1">main</span><span class="s5">() {</span>
+    <span class="s4">const int </span><span class="s1">screenWidth </span><span class="s5">= </span><span class="s6">1280</span><span class="s5">;</span>
+    <span class="s4">const int </span><span class="s1">screenHeight </span><span class="s5">= </span><span class="s6">720</span><span class="s5">;</span>
+    <span class="s1">InitWindow</span><span class="s5">(</span><span class="s6">1280</span><span class="s5">, </span><span class="s6">720</span><span class="s5">, </span><span class="s3">&quot;Fenian Ram 3000&quot;</span><span class="s5">);</span>
+    <span class="s1">SetTargetFPS</span><span class="s5">(</span><span class="s6">60</span><span class="s5">);</span>
+
+    <span class="s0">// Using guidance from Lecture 2, I began to load textures and add vectors.</span>
+    <span class="s1">Texture2D submarine1 </span><span class="s5">= </span><span class="s1">LoadTexture</span><span class="s5">(</span><span class="s3">&quot;submarine.png&quot;</span><span class="s5">);</span>
+
+<span class="s1">Vector2 scale </span><span class="s5">= {</span><span class="s6">0.5f</span><span class="s5">/</span><span class="s6">0.5f</span><span class="s5">};</span>
+
+    <span class="s0">// The Game Loop</span>
+    <span class="s4">while </span><span class="s5">(!</span><span class="s1">WindowShouldClose</span><span class="s5">() </span><span class="s0">/*WindowShouldClose returns true if esc is clicked and closes the window*/</span><span class="s5">) {</span>
+
+        <span class="s0">// Setup Canvas</span>
+        <span class="s1">BeginDrawing</span><span class="s5">();</span>
+        <span class="s0">// Clear canvas to a specific color to avoid flicker</span>
+        <span class="s1">ClearBackground</span><span class="s5">(</span><span class="s1">RAYWHITE</span><span class="s5">);</span>
+
+        <span class="s0">// Here goes all the Game Logic</span>
+
+        <span class="s0">// teardown Canvas</span>
+        <span class="s1">EndDrawing</span><span class="s5">();</span>
+    <span class="s5">}</span>
+    <span class="s1">CloseWindow</span><span class="s5">();</span>
+    <span class="s4">return </span><span class="s6">0</span><span class="s5">;</span>
+<span class="s5">}</span>
+</pre>
+</body>
+</html>
