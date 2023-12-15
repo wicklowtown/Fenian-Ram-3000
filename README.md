@@ -4,4 +4,4 @@ The tutorial I used to make Raylib function used C99, and thus C++ was not used 
 
 Here is a list of all resources used throughout the project outside of college lectures: 
 
-https://chirag4862.hashnode.dev/getting-started-with-raylib-for-game-development-in-c# (for basic code structure)
+For basic code structure -https://chirag4862.hashnode.dev/getting-started-with-raylib-for-game-development-in-c# 
