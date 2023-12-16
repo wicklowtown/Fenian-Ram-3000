@@ -15,4 +15,6 @@ Music / score used: https://www.youtube.com/watch?v=5AYUePEnLiI
 
 Background sounds (Underwater sounds) - https://www.youtube.com/watch?v=bZiHx-xV-lU
 
+Audio playback issues fixed using: https://www.raylib.com/examples/audio/loader.html?name=audio_music_stream
+
 For creating sprites, backgrounds and animations: https://www.piskelapp.com/p/create/sprite
