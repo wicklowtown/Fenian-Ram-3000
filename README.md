@@ -13,4 +13,6 @@ For basic code structure: https://chirag4862.hashnode.dev/getting-started-with-r
 
 Music / score used: https://www.youtube.com/watch?v=5AYUePEnLiI
 
+Background sounds (Underwater sounds) - https://www.youtube.com/watch?v=bZiHx-xV-lU
+
 For creating sprites, backgrounds and animations: https://www.piskelapp.com/p/create/sprite
