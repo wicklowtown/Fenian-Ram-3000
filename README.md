@@ -1,6 +1,6 @@
-This is a game project for CA1 of Software Engineering.
+This is a game project for CA1 of Software Engineering. It is my first ever attempt at coding and programming in general.
 I am using a Mac, and had trouble getting Raylib to work in VS Code, so Clion was used instead to run Raylib.
-The tutorial I used to make Raylib function used C99, and thus C++ was not used for this project.
+The tutorial I used to make Raylib function used C99, and further problems arose whilst trying to implement C++. Thus, C++ was not used for this project.
 
 Here is a list of all resources used throughout the project aside from college lectures: 
 
