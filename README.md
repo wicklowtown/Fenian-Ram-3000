@@ -7,6 +7,8 @@ Here is a list of all resources used throughout the project aside from college l
 
 For installing Raylib on Clion: https://www.youtube.com/watch?v=gQ-ZUL1mONU&t=421s
 
+Information on storing/libraries on Clion: https://www.youtube.com/watch?v=CqjokCekMM8&t=31s
+
 For basic code structure: https://chirag4862.hashnode.dev/getting-started-with-raylib-for-game-development-in-c# 
 
 Music / score used: https://www.youtube.com/watch?v=5AYUePEnLiI
