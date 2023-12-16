@@ -17,9 +17,7 @@ Background sounds (Underwater sounds) - https://www.youtube.com/watch?v=bZiHx-xV
 
 Audio playback issues fixed using: https://www.raylib.com/examples/audio/loader.html?name=audio_music_stream
 
-Adding title screens: 
-
-https://www.raylib.com/examples/core/loader.html?name=core_basic_screen_manager
+Adding title screens: https://www.raylib.com/examples/core/loader.html?name=core_basic_screen_manager
 
 https://stackoverflow.com/questions/66566761/how-to-make-a-simple-menu-with-c-and-raylib
 
