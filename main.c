@@ -9,18 +9,12 @@ int main(void)
     const int screenWidth = 1280;
     const int screenHeight = 720;
     InitWindow(screenWidth, screenHeight, "Fenian Ram 3000");
-
     SetTargetFPS(60);
 
     // Using guidance from Lecture 4, I added a Loop Counter.
     int loopCounter = 0;
     loopCounter++;
 
-    BeginDrawing();
-    ClearBackground(RAYWHITE);
-    DrawText(TextFormat("Loop Counter: %d", loopCounter), 10, 10, 20, BLACK);
-
-    EndDrawing();
     //Music set-up section
 //This was very difficult to set up. I tried removing the feature of pressing
 // spacebar to start the sound, as shown in Lecture 3, because I wanted the music to play automatically
@@ -64,12 +58,13 @@ int main(void)
     bool enterEntered = false;
 
     while (!WindowShouldClose()) {
+
         UpdateMusicStream(music1);
         UpdateMusicStream(music2);
 
         if (FenianTitleScreen1) {
             BeginDrawing();
-            ClearBackground(RAYWHITE);
+            ClearBackground(BLACK);
             if (!titleEntered) {
                 titleY += GetFrameTime() * 100;
                 if (titleY >= screenHeight / 2 - 50) {
@@ -77,8 +72,8 @@ int main(void)
                     titleY = screenHeight / 2 - 50;
                 }
             }
-            DrawTextEx(customFont7, "Fenian Ram 3000", (Vector2){screenWidth / 2 -
-            MeasureTextEx(customFont7, "Fenian Ram 3000",80, 2).x / 2, titleY},
+            DrawTextEx(customFont7, "Fenian Ram", (Vector2){screenWidth / 2 -
+            MeasureTextEx(customFont7, "Fenian Ram ",80, 2).x / 2, titleY},
                        80, 2, LIME);
             if (titleEntered && !enterEntered) {
                 enterY -= GetFrameTime() * 100;
@@ -87,10 +82,29 @@ int main(void)
                     enterY = screenHeight / 2 + 50;
                 }
             }
-            DrawText("Press ENTER to Start", screenWidth / 2 -
-                                             MeasureText("Press ENTER to Start!", 20) / 2,
-                     enterY,
-                     20, ORANGE);EndDrawing();
+
+            //With 'customfont7', it wouldn't register numbers, so I copied the "Fenian Ram" title text code
+            //above and used it with a different font to read "3000". I accidentally copied this twice,
+            //but I like the overlapping look it gives the text, so I played around and adjusted the text,
+            //keeping the two texts in.
+            DrawTextEx(customFont3, "3000", (Vector2){screenWidth / 1.3 -
+            MeasureTextEx(customFont3, "3000",90, 2).x / 2, titleY - 4},
+                       110, 2, WHITE);
+            DrawTextEx(customFont3, "3000", (Vector2){screenWidth / 1.3 -
+            MeasureTextEx(customFont3,
+                          "3000", 90, 2).x / 2, titleY - 4},
+                       115, 2, WHITE);
+
+            if (titleEntered && !enterEntered) {
+                enterY -= GetFrameTime() * 100;
+                if (enterY <= screenHeight / 2 + 50) {
+                    enterEntered = true;
+                    enterY = screenHeight / 2 + 50;
+                }
+            }
+            DrawText("Press ENTER to Play", screenWidth / 2 -
+            MeasureText("Press ENTER to Play", 20) / 2,
+                     enterY,20, ORANGE);EndDrawing();
             if (titleEntered && enterEntered && IsKeyPressed(KEY_ENTER)) {
                 FenianTitleScreen1 = false;
             }
@@ -104,17 +118,43 @@ int main(void)
         if (IsKeyDown(KEY_UP)) position.y -= moveSpeed;
         if (IsKeyDown(KEY_DOWN)) position.y += moveSpeed;
 
+
+
+        //Main game loop set-up
+
         BeginDrawing();
         ClearBackground(BLUE);
         DrawTextureEx(submarine1, position, 0.0f, 0.5f, WHITE);
 
         DrawTextEx(customFont4, "LEVEL 1", (Vector2){5, screenHeight - 110},
-                   40, 2, RAYWHITE);
+                   40, 2, PINK);
         DrawTextEx(customFont7, "Dreamy Depths", (Vector2){5, screenHeight - 70},
                    40, 2, RAYWHITE);
         DrawTextEx(customFont7, "Use the arrows to move", (Vector2){5,screenHeight - 30},
-                   20, 2, RAYWHITE);
+                   20, 2, PINK);
 
+
+        BeginDrawing();
+        for (int i = 0; i <5; i++){
+            Color squareColor;
+
+            switch (i) {
+                case 0:
+                    squareColor = (Color){0,0,50,255};
+                case 1:
+                    squareColor = (Color){0,0,90,255};
+                case 2:
+                    squareColor = (Color){0,0,130,255};
+                case 3:
+                    squareColor = (Color){0,0,170,255};
+                case 4:
+                    squareColor = (Color){0,0,255,255};
+                default:
+                    squareColor = (Color){0,0,50,255};
+                    break;
+            }
+            DrawRectangle(100+100 * i, 250, 50, 50, squareColor);
+        }
         EndDrawing();
     }
     CloseAudioDevice();
