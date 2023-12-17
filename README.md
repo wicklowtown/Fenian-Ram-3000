@@ -28,3 +28,8 @@ For 2nd title screen / scroll: https://www.raylib.com/examples/text/loader.html?
 For creating sprites, backgrounds and animations: https://www.piskelapp.com/p/create/sprite
 
 A number of techniques learned / better understood with this tutorial: https://www.youtube.com/watch?v=abIlGCx_Yq8&t=34s
+
+Info on adding backgrounds: https://www.youtube.com/watch?v=DdyQLL9RHT0
+
+Background art used: https://www.pixilart.com/art/underwater-1eb0e0b0de12ed1
+https://assetstore.unity.com/packages/2d/textures-materials/water/underwater-fantasy-87457
