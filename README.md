@@ -26,3 +26,5 @@ https://www.youtube.com/watch?v=dd5uUfilpJw
 For 2nd title screen / scroll: https://www.raylib.com/examples/text/loader.html?name=text_writing_anim
 
 For creating sprites, backgrounds and animations: https://www.piskelapp.com/p/create/sprite
+
+A number of techniques learned / better understood with this tutorial: https://www.youtube.com/watch?v=abIlGCx_Yq8&t=34s
