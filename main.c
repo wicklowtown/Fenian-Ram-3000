@@ -1,6 +1,5 @@
 // Using guidance from Lecture 1, I added a basic Raylib structure.
 // (From https://chirag4862.hashnode.dev/getting-started-with-raylib-for-game-development-in-c#)
-
 #include "raylib.h"
 
 //Main set-up section
@@ -8,8 +7,13 @@ int main(void)
 {
     const int screenWidth = 1280;
     const int screenHeight = 720;
+    Vector2 circlePosition = {screenWidth/2, screenHeight/2};
+    const float moveSpeed2 = 5.0f;
+    const int circleRadius2 = 50;
+
     InitWindow(screenWidth, screenHeight, "Fenian Ram 3000");
     SetTargetFPS(60);
+
 
     // Using guidance from Lecture 4, I added a Loop Counter.
     int loopCounter = 0;
@@ -51,6 +55,7 @@ int main(void)
     Font customFont6 = LoadFont("inflate.ttf");
     Font customFont7 = LoadFont("Freedom.ttf");
 
+
     bool FenianTitleScreen1 = true;
     float titleY = -MeasureText("Fenian Ram 3000", 90);
     float enterY = screenHeight;
@@ -73,7 +78,8 @@ int main(void)
                 }
             }
             DrawTextEx(customFont7, "Fenian Ram", (Vector2){screenWidth / 2 -
-            MeasureTextEx(customFont7, "Fenian Ram ",80, 2).x / 2, titleY},
+            MeasureTextEx(customFont7, "Fenian Ram ",
+                          80, 2).x / 2, titleY},
                        80, 2, LIME);
             if (titleEntered && !enterEntered) {
                 enterY -= GetFrameTime() * 100;
@@ -119,11 +125,13 @@ int main(void)
         if (IsKeyDown(KEY_DOWN)) position.y += moveSpeed;
 
 
-
-        //Main game loop set-up
+        //Main game loop set-up section
 
         BeginDrawing();
         ClearBackground(BLUE);
+
+        DrawCircleV(circlePosition, circleRadius2, RED);
+
         DrawTextureEx(submarine1, position, 0.0f, 0.5f, WHITE);
 
         DrawTextEx(customFont4, "LEVEL 1", (Vector2){5, screenHeight - 110},
@@ -161,4 +169,3 @@ int main(void)
     CloseWindow();
     return 0;
 }
-
