@@ -12,6 +12,15 @@ int main(void)
 
     SetTargetFPS(60);
 
+    // Using guidance from Lecture 4, I added a Loop Counter.
+    int loopCounter = 0;
+    loopCounter++;
+
+    BeginDrawing();
+    ClearBackground(RAYWHITE);
+    DrawText(TextFormat("Loop Counter: %d", loopCounter), 10, 10, 20, BLACK);
+
+    EndDrawing();
     //Music set-up section
 //This was very difficult to set up. I tried removing the feature of pressing
 // spacebar to start the sound, as shown in Lecture 3, because I wanted the music to play automatically
@@ -38,7 +47,8 @@ int main(void)
     // https://www.youtube.com/watch?v=dd5uUfilpJw
 
     // I then added back in the custom fonts I download, to be used with each piece of title text.
-    // Not all ended up being used.
+    // Not all ended up being used. Also, some were limited to letters and not numbers, so couldn't be used for the
+    // "3000" in the title screen.
     Font customFont = LoadFont("grasping.ttf");
     Font customFont2 = LoadFont("COMICATE.TTF");
     Font customFont3 = LoadFont("Outwrite.ttf");
@@ -68,7 +78,8 @@ int main(void)
                 }
             }
             DrawTextEx(customFont7, "Fenian Ram 3000", (Vector2){screenWidth / 2 -
-            MeasureTextEx(customFont7, "Fenian Ram 3000",80, 2).x / 2, titleY}, 80, 2, LIME);
+            MeasureTextEx(customFont7, "Fenian Ram 3000",80, 2).x / 2, titleY},
+                       80, 2, LIME);
             if (titleEntered && !enterEntered) {
                 enterY -= GetFrameTime() * 100;
                 if (enterY <= screenHeight / 2 + 50) {
@@ -77,9 +88,9 @@ int main(void)
                 }
             }
             DrawText("Press ENTER to Start", screenWidth / 2 -
-                                             MeasureText("Press ENTER to Start!", 20) / 2, enterY,
+                                             MeasureText("Press ENTER to Start!", 20) / 2,
+                     enterY,
                      20, ORANGE);EndDrawing();
-
             if (titleEntered && enterEntered && IsKeyPressed(KEY_ENTER)) {
                 FenianTitleScreen1 = false;
             }
@@ -97,10 +108,12 @@ int main(void)
         ClearBackground(BLUE);
         DrawTextureEx(submarine1, position, 0.0f, 0.5f, WHITE);
 
-        DrawTextEx(customFont4, "LEVEL 1", (Vector2){5, screenHeight - 110}, 40, 2, RAYWHITE);
-        DrawTextEx(customFont7, "Dreamy Depths", (Vector2){5, screenHeight - 70}, 40, 2, RAYWHITE);
-        DrawTextEx(customFont7, "Use the arrows to move", (Vector2){5, screenHeight - 30}, 20, 2, RAYWHITE);
-
+        DrawTextEx(customFont4, "LEVEL 1", (Vector2){5, screenHeight - 110},
+                   40, 2, RAYWHITE);
+        DrawTextEx(customFont7, "Dreamy Depths", (Vector2){5, screenHeight - 70},
+                   40, 2, RAYWHITE);
+        DrawTextEx(customFont7, "Use the arrows to move", (Vector2){5,screenHeight - 30},
+                   20, 2, RAYWHITE);
 
         EndDrawing();
     }
@@ -108,3 +121,4 @@ int main(void)
     CloseWindow();
     return 0;
 }
+
