@@ -1,12 +1,19 @@
 // Using guidance from Lecture 1, I added a basic Raylib structure.
 // (From https://chirag4862.hashnode.dev/getting-started-with-raylib-for-game-development-in-c#)
+
+//Throughout development, several features were removed: namely, a 2nd title screen that was based on:
+// (https://www.raylib.com/examples/text/loader.html?name=text_writing_anim)
+//I couldn't implement it properly with the other title screens.
+
 #include "raylib.h"
 
 //Main set-up section
 int main(void)
 {
-    const int screenWidth = 1280;
-    const int screenHeight = 720;
+    // The screen width and height changed around a lot. In this final submission build, I built it around
+    // the size of the background images used, as I couldn't get them to fit right otherwise.
+    const int screenWidth = 1000;
+    const int screenHeight = 600;
     InitWindow(screenWidth, screenHeight, "Fenian Ram 3000");
     SetTargetFPS(60);
 
@@ -29,7 +36,7 @@ int main(void)
     float moveSpeed = 6.0f;
 
     // Title Screen set-up
-    // I wanted the titles to evoke the Irish flag colours.
+    // I wanted the titles to evoke the Irish flag colours.I found this very difficult to get both titles to play.
     // Information on setting up titles was found following along with Lecture 3, as well as using the following:
     // https://www.raylib.com/examples/core/loader.html?name=core_basic_screen_manager
     // https://stackoverflow.com/questions/66566761/how-to-make-a-simple-menu-with-c-and-raylib
@@ -59,7 +66,8 @@ int main(void)
 
         if (FenianTitleScreen1) {
             BeginDrawing();
-            ClearBackground(BLACK);
+            Texture2D background = LoadTexture("DeepSea2.png");
+            DrawTexture(background, 0, 0, WHITE);
             if (!titleEntered) {
                 titleY += GetFrameTime() * 100;
                 if (titleY >= screenHeight / 2 - 50) {
@@ -91,6 +99,8 @@ int main(void)
                                                                     "3000", 90, 2).x / 2,
                                                       titleY - 4},115, 2, WHITE);
 
+
+
             if (titleEntered && !enterEntered) {
                 enterY -= GetFrameTime() * 100;
                 if (enterY <= screenHeight / 2 + 50) {
@@ -107,7 +117,13 @@ int main(void)
             continue;
         }
 
+//The background images were very hard to implement without impacting the other pre-existing code.
+//I ended up copying the code for "DeepSea1.png" from "DeepSea2.png" because it was the first one to work.
+        Texture2D background = LoadTexture("DeepSea1.png");
+        DrawTexture(background, 0, 0, WHITE);
+
         // Using further guidance from Lecture 3, I added movement inputs to the sprite.
+        //Then, using guidance from lecture 4, I added padding to the submarine sprite.
         // Submarine Movement set-up
         if (IsKeyDown(KEY_RIGHT) && position.x + submarine1.width / 2 < screenWidth - 10)
         {
@@ -131,7 +147,9 @@ int main(void)
 
         BeginDrawing();
         ClearBackground(BLUE);
-
+//The image of the submarine sprite ended up looking very squashed. I developed the game with a different image,
+//and to stop problems with the padding when changing the image size, I scaled the new image down to be the size
+//of the first image used. This caused the squash.
         DrawTextureEx(submarine1, position, 0.0f, 0.5f, WHITE);
 
         DrawTextEx(customFont4, "LEVEL 1", (Vector2){5, screenHeight - 110},
