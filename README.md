@@ -23,6 +23,6 @@ https://stackoverflow.com/questions/66566761/how-to-make-a-simple-menu-with-c-an
 
 https://www.youtube.com/watch?v=dd5uUfilpJw
 
-
+For 2nd title screen / scroll: https://www.raylib.com/examples/text/loader.html?name=text_writing_anim
 
 For creating sprites, backgrounds and animations: https://www.piskelapp.com/p/create/sprite
