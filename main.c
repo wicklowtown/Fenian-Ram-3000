@@ -5,13 +5,14 @@
 // (https://www.raylib.com/examples/text/loader.html?name=text_writing_anim)
 //I couldn't implement it properly with the other title screens.
 
+#include <math.h>
 #include "raylib.h"
 
 //Main set-up section
 int main(void)
 {
     // The screen width and height changed around a lot. In this final submission build, I built it around
-    // the size of the background images used, as I couldn't get them to fit right otherwise.
+    // the size of the background images used, so approx 1000x600, as I couldn't get them to fit right otherwise.
     const int screenWidth = 1000;
     const int screenHeight = 600;
     InitWindow(screenWidth, screenHeight, "Fenian Ram 3000");
@@ -35,8 +36,9 @@ int main(void)
                         (float)screenHeight / 2 - submarine1.height / 2};
     float moveSpeed = 6.0f;
 
-    // Enemy Fish Sprite set-up section
-//Using guidance from Lectures 4 and 5, I added an enemy sprite of a squid type monster.
+    //Enemy fish sprite set-up section
+    //This was a pain. Getting this to load in was a nightmare.
+    //I made the enemy speed half of the submarine, so it could escape it easily.
     Texture2D enemyFish = LoadTexture("EnemyFish.png");
     Vector2 enemyPosition = {(float)screenWidth / 2, (float)screenHeight / 2};
     float enemySpeed = 3.0f;
@@ -106,8 +108,6 @@ int main(void)
                                                                     "3000", 90, 2).x / 2,
                                                       titleY - 80},115, 2, WHITE);
 
-
-
             if (titleEntered && !enterEntered) {
                 enterY -= GetFrameTime() * 100;
                 if (enterY <= screenHeight / 2 + 50) {
@@ -148,36 +148,34 @@ int main(void)
         {
             position.y += moveSpeed;
         }
-
-//Enemy movement set-up section
-//(the enemy fish sprite is locked to follow the submarine)
-
-//Using guidance from Lectures 4 and 5, I added movement to the enemy sprite, to follow the submarine.
-//This was implemented very last minute, and I couldn't figure out how to make the enemy restart the game
-//if the player / submarine was hit by it.
         float deltaX = position.x - enemyPosition.x;
         float deltaY = position.y - enemyPosition.y;
         float distance = pow(pow(deltaX, 2) + pow(deltaY, 2), 0.5);
+        if (distance > 0)
+        {
+            deltaX /= distance;
+            deltaY /= distance;
+        }
+        enemyPosition.x += deltaX * enemySpeed;
+        enemyPosition.y += deltaY * enemySpeed;
 
-        
-        //Main game loop set-up
-
+        // Main game loop set-up
         BeginDrawing();
         ClearBackground(BLUE);
-//The image of the submarine sprite ended up looking very squashed. I developed the game with a different image,
-//and to stop problems with the padding when changing the image size, I scaled the new image down to be the size
-//of the first image used. This caused the squash.
+
         DrawTextureEx(submarine1, position, 0.0f, 0.5f, WHITE);
+        DrawTextureEx(enemyFish, enemyPosition, 0.0f, 1.0f, WHITE);
 
         DrawTextEx(customFont4, "LEVEL 1", (Vector2){5, screenHeight - 110},
                    40, 2, PINK);
         DrawTextEx(customFont7, "Dreamy Depths", (Vector2){5, screenHeight - 70},
                    40, 2, RAYWHITE);
-        DrawTextEx(customFont7, "Use the arrows to move", (Vector2){5,screenHeight - 30},
-                   20, 2, PINK);
+        DrawTextEx(customFont7, "Use the arrows to move",
+                   (Vector2){5, screenHeight - 30}, 20, 2, PINK);
 
         EndDrawing();
     }
+
     CloseAudioDevice();
     CloseWindow();
     return 0;
