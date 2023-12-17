@@ -35,6 +35,13 @@ int main(void)
                         (float)screenHeight / 2 - submarine1.height / 2};
     float moveSpeed = 6.0f;
 
+    // Enemy Fish Sprite set-up section
+//Using guidance from Lectures 4 and 5, I added an enemy sprite of a squid type monster.
+    Texture2D enemyFish = LoadTexture("EnemyFish.png");
+    Vector2 enemyPosition = {(float)screenWidth / 2, (float)screenHeight / 2};
+    float enemySpeed = 3.0f;
+
+
     // Title Screen set-up
     // I wanted the titles to evoke the Irish flag colours.I found this very difficult to get both titles to play.
     // Information on setting up titles was found following along with Lecture 3, as well as using the following:
@@ -92,12 +99,12 @@ int main(void)
             //keeping the two texts in.
             DrawTextEx(customFont3, "3000", (Vector2){screenWidth / 1.3 -
                                                       MeasureTextEx(customFont3,
-                                                                    "3000",90, 2).x / 2, titleY - 4},
+                                                                    "3000",90, 2).x / 2, titleY - 80},
                        110, 2, WHITE);
             DrawTextEx(customFont3, "3000", (Vector2){screenWidth / 1.3 -
                                                       MeasureTextEx(customFont3,
                                                                     "3000", 90, 2).x / 2,
-                                                      titleY - 4},115, 2, WHITE);
+                                                      titleY - 80},115, 2, WHITE);
 
 
 
@@ -142,7 +149,17 @@ int main(void)
             position.y += moveSpeed;
         }
 
+//Enemy movement set-up section
+//(the enemy fish sprite is locked to follow the submarine)
 
+//Using guidance from Lectures 4 and 5, I added movement to the enemy sprite, to follow the submarine.
+//This was implemented very last minute, and I couldn't figure out how to make the enemy restart the game
+//if the player / submarine was hit by it.
+        float deltaX = position.x - enemyPosition.x;
+        float deltaY = position.y - enemyPosition.y;
+        float distance = pow(pow(deltaX, 2) + pow(deltaY, 2), 0.5);
+
+        
         //Main game loop set-up
 
         BeginDrawing();
