@@ -2,29 +2,13 @@
 // (From https://chirag4862.hashnode.dev/getting-started-with-raylib-for-game-development-in-c#)
 #include "raylib.h"
 
-
-// Using guidance from Lecture 4, I began attempting to create obstacles / enemies.
-struct Anim
-{
-    Rectangle rec;
-    Vector2 pos;
-    int frame;
-    float updateTime;
-    float runningTime;
-};
-
-
 //Main set-up section
-int main()
+int main(void)
 {
     const int screenWidth = 1280;
     const int screenHeight = 720;
     InitWindow(screenWidth, screenHeight, "Fenian Ram 3000");
     SetTargetFPS(60);
-
-    // Using guidance from Lecture 4, I added a Loop Counter.
-    int loopCounter = 0;
-    loopCounter++;
 
     //Music set-up section
 //This was very difficult to set up. I tried removing the feature of pressing
@@ -39,10 +23,10 @@ int main()
     PlayMusicStream(music2);
 
     // Submarine Sprite set-up section
-    Texture2D submarine1 = LoadTexture("submarine.png");
+    Texture2D submarine1 = LoadTexture("NewSub2.png");
     Vector2 position = {(float)screenWidth / 2 - submarine1.width / 2,
                         (float)screenHeight / 2 - submarine1.height / 2};
-    float moveSpeed = 7.0f;
+    float moveSpeed = 6.0f;
 
     // Title Screen set-up
     // I wanted the titles to evoke the Irish flag colours.
@@ -70,7 +54,6 @@ int main()
 
     while (!WindowShouldClose())
     {
-
         UpdateMusicStream(music1);
         UpdateMusicStream(music2);
 
@@ -84,11 +67,11 @@ int main()
                     titleY = screenHeight / 2 - 50;
                 }
             }
-            DrawTextEx(customFont7, "Fenian Ram", (Vector2){screenWidth / 2 -
-            MeasureTextEx(customFont7,"Fenian Ram ",80,
-                          2).x / 2, titleY},80, 2, LIME);
-            if (titleEntered && !enterEntered) {
-                enterY -= GetFrameTime() * 100;
+            DrawTextEx(customFont7, "Fenian Ram",
+                       (Vector2){screenWidth / 2 -
+                                 MeasureTextEx(customFont7,"Fenian Ram ",
+                                               80,2).x / 2, titleY},80, 2, LIME);
+            if (titleEntered && !enterEntered) {enterY -= GetFrameTime() * 100;
                 if (enterY <= screenHeight / 2 + 50) {
                     enterEntered = true;
                     enterY = screenHeight / 2 + 50;
@@ -100,13 +83,13 @@ int main()
             //but I like the overlapping look it gives the text, so I played around and adjusted the text,
             //keeping the two texts in.
             DrawTextEx(customFont3, "3000", (Vector2){screenWidth / 1.3 -
-            MeasureTextEx(customFont3,
-                          "3000",90, 2).x / 2, titleY - 4},
+                                                      MeasureTextEx(customFont3,
+                                                                    "3000",90, 2).x / 2, titleY - 4},
                        110, 2, WHITE);
             DrawTextEx(customFont3, "3000", (Vector2){screenWidth / 1.3 -
-            MeasureTextEx(customFont3,
-                          "3000", 90, 2).x / 2,
-                          titleY - 4},115, 2, WHITE);
+                                                      MeasureTextEx(customFont3,
+                                                                    "3000", 90, 2).x / 2,
+                                                      titleY - 4},115, 2, WHITE);
 
             if (titleEntered && !enterEntered) {
                 enterY -= GetFrameTime() * 100;
@@ -126,19 +109,28 @@ int main()
 
         // Using further guidance from Lecture 3, I added movement inputs to the sprite.
         // Submarine Movement set-up
-        if (IsKeyDown(KEY_RIGHT)) position.x += moveSpeed;
-        if (IsKeyDown(KEY_LEFT)) position.x -= moveSpeed;
-        if (IsKeyDown(KEY_UP)) position.y -= moveSpeed;
-        if (IsKeyDown(KEY_DOWN)) position.y += moveSpeed;
+        if (IsKeyDown(KEY_RIGHT) && position.x + submarine1.width / 2 < screenWidth - 10)
+        {
+            position.x += moveSpeed;
+        }
+        if (IsKeyDown(KEY_LEFT) && position.x - submarine1.width / 2 > 10)
+        {
+            position.x -= moveSpeed;
+        }
+        if (IsKeyDown(KEY_UP) && position.y - submarine1.height / 2 > 10)
+        {
+            position.y -= moveSpeed;
+        }
+        if (IsKeyDown(KEY_DOWN) && position.y + submarine1.height / 2 < screenHeight - 10)
+        {
+            position.y += moveSpeed;
+        }
+
 
         //Main game loop set-up
 
         BeginDrawing();
         ClearBackground(BLUE);
-
-        const int gravity{1000};
-        const int submarinePadding{50};
-        Texture2D obstacle = LoadTexture("enemy.png)
 
         DrawTextureEx(submarine1, position, 0.0f, 0.5f, WHITE);
 
@@ -149,28 +141,6 @@ int main()
         DrawTextEx(customFont7, "Use the arrows to move", (Vector2){5,screenHeight - 30},
                    20, 2, PINK);
 
-
-        BeginDrawing();
-        for (int i = 0; i <5; i++){
-            Color squareColor;
-
-            switch (i) {
-                case 0:
-                    squareColor = (Color){0,0,50,255};
-                case 1:
-                    squareColor = (Color){0,0,90,255};
-                case 2:
-                    squareColor = (Color){0,0,130,255};
-                case 3:
-                    squareColor = (Color){0,0,170,255};
-                case 4:
-                    squareColor = (Color){0,0,255,255};
-                default:
-                    squareColor = (Color){0,0,50,255};
-                    break;
-            }
-            DrawRectangle(100+100 * i, 250, 50, 50, squareColor);
-        }
         EndDrawing();
     }
     CloseAudioDevice();
