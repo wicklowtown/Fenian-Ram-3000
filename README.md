@@ -29,6 +29,8 @@ For creating sprites, backgrounds and animations: https://www.piskelapp.com/p/cr
 
 A number of techniques learned / better understood with this tutorial: https://www.youtube.com/watch?v=abIlGCx_Yq8&t=34s
 
+Information on implementing Raymath for vectors (math.h) - https://github.com/yashrk/raylib-scm/blob/master/raymath.h
+
 Info on adding backgrounds: https://www.youtube.com/watch?v=DdyQLL9RHT0
 
 Background art used: https://www.pixilart.com/art/underwater-1eb0e0b0de12ed1
